@@ -1,0 +1,12 @@
+# הגדרות ל-Render (תוכנית חינמית). Render קורא את הקובץ הזה אוטומטית.
+services:
+  - type: web
+    name: hakometz
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

@@ -1,0 +1,28 @@
+# הגדרות Fly.io – החליפו את שם האפליקציה (app) לשם ייחודי משלכם
+app = "hakometz-CHANGE-ME"
+primary_region = "fra"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "3000"
+  DATA_DIR = "/data"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
+
+# כדי ששיאי הסולו והיסטוריית השאלות יישמרו בין עדכונים:
+#   fly volumes create hakometz_data --size 1 --region fra
+# ואז בטלו את ההערה:
+# [mounts]
+#   source = "hakometz_data"
+#   destination = "/data"
